@@ -9,9 +9,20 @@ services:
       - db
     networks:
       - neo4j_net
+    volumes:
+      - ./api:/api
     environment:
       - NEO4J_URL=bolt://db:7687
-
+  client:
+    build: ./client
+    ports:
+      - 3000:3000
+    depends_on:
+      - api
+    volumes:
+      - ./client:/client
+    environment:
+      - REACT_APP_API_BASE_URL=http://127.0.0.1:8080
   db:
     image: neo4j:latest
     ports:

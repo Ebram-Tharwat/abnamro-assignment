@@ -1,0 +1,48 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Expressjs server that surface data stored in neo4j database",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --config .prettierrc src/**/*.ts --write",
+    "lint": "eslint . --fix",
+    "dev": "ts-node-dev --respawn --pretty --transpile-only src/index.ts",
+    "test": "jest"
+  },
+  "keywords": [
+    "neo4j",
+    "expressjs",
+    "reactjs",
+    "cra",
+    "docker"
+  ],
+  "author": "ebram.khalil",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^16.4.7",
+    "@types/jest": "^26.0.24",
+    "@typescript-eslint/eslint-plugin": "^4.28.5",
+    "@typescript-eslint/parser": "^4.28.5",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.4.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "^2.3.2",
+    "ts-node-dev": "^1.1.8",
+    "jest": "^27.0.6",
+    "ts-jest": "^27.0.4",
+    "typescript": "^4.3.5"
+  }
+}

@@ -1,14 +1,16 @@
+import { inject, injectable } from 'inversify';
+import TYPES from '../../../container/types';
 import { Item, IItemRepository } from '../../../domain/items';
-import { readFromEnv } from '../infrastructure/DbConfiguration';
-import DbConnectionFactory, {
-  IDbConnectionFactory,
-} from '../infrastructure/DbConnectionFactory';
+import { IDbConnectionFactory } from '../infrastructure/DbConnectionFactory';
 
+@injectable()
 class ItemRepository implements IItemRepository {
   private _connection: IDbConnectionFactory;
 
-  public constructor() {
-    this._connection = new DbConnectionFactory(readFromEnv());
+  public constructor(
+    @inject(TYPES.IDbConnectionFactory) connection: IDbConnectionFactory,
+  ) {
+    this._connection = connection;
   }
 
   public async getAll(): Promise<Item[]> {

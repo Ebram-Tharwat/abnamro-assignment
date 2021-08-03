@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import fs from 'fs';
 import * as dotenv from 'dotenv';
 import { readFromEnv } from '../infrastructure/DbConfiguration';

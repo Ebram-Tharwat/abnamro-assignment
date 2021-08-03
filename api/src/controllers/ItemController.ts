@@ -1,15 +1,19 @@
-import express, { Request, Response } from 'express';
-import ItemRepository from '../adapters/neo4j/repositories/ItemRepository';
-import { Item } from '../domain/items';
+import { interfaces, controller, httpGet } from 'inversify-express-utils';
+import { inject } from 'inversify';
+import { IItemRepository, Item } from '../domain/items';
+import TYPES from '../container/types';
 
-export const itemController = express.Router();
+@controller('/api/items')
+export default class ItemController implements interfaces.Controller {
+  private _repo: IItemRepository;
 
-itemController.get('/', async (req: Request, res: Response) => {
-  try {
-    const repo = new ItemRepository();
-    const items: Item[] = await repo.getAll();
-    res.status(200).send(items);
-  } catch (e) {
-    res.status(500).send(e.message);
+  public constructor(@inject(TYPES.IItemRepository) repo: IItemRepository) {
+    this._repo = repo;
   }
-});
+
+  @httpGet('/')
+  public async index(): Promise<Item[]> {
+    const result = await this._repo.getAll();
+    return result;
+  }
+}

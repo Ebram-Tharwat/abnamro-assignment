@@ -9,6 +9,8 @@ services:
       - db
     networks:
       - neo4j_net
+    environment:
+      - NEO4J_URL=bolt://db:7687
 
   db:
     image: neo4j:latest

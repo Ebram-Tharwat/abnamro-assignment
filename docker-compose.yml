@@ -5,3 +5,24 @@ services:
     build: ./api
     ports:
       - 8080:8080
+    depends_on:
+      - db
+    networks:
+      - neo4j_net
+
+  db:
+    image: neo4j:latest
+    ports:
+      - 7474:7474
+      - 7687:7687
+    volumes:
+      - $HOME/neo4j/data:/data
+      - $HOME/neo4j/logs:/logs
+    environment:
+      - NEO4J_AUTH=none
+    networks:
+      - neo4j_net
+
+networks:
+  neo4j_net:
+    driver: bridge

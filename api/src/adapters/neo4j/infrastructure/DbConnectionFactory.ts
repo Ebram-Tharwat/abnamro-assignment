@@ -9,12 +9,9 @@ export interface IDbConnectionFactory {
 
 @injectable()
 export default class DbConnectionFactory implements IDbConnectionFactory {
-  private _config: DbConfiguration;
-
   private _driver: Driver;
 
   public constructor(@inject(TYPES.DbConfiguration) config: DbConfiguration) {
-    this._config = config;
     this._driver = neo4j.driver(
       config.url,
       neo4j.auth.basic(config.username, config.password),

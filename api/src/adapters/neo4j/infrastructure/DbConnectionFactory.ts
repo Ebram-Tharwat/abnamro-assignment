@@ -1,5 +1,5 @@
 import neo4j, { Driver, Session } from 'neo4j-driver';
-import DbConfiguration, { readFromEnv } from './DbConfiguration';
+import DbConfiguration from './DbConfiguration';
 
 export interface IDbConnectionFactory {
   openSession: (callback: (session: Session) => Promise<void>) => Promise<void>;
